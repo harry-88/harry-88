@@ -1,5 +1,9 @@
 # 💫 About Me:
-About<br>I'm a dedicated software engineer, having contributed to cutting-edge projects at Nowasys and excelled as a front-end developer at EZ Wage. My experience at Nowasys sharpened my problem-solving skills and adaptability, allowing me to design robust software solutions collaboratively. As a Frontend Developer at EZ Wage, I expertly transformed design concepts into engaging web applications, prioritizing seamless user experiences. My holistic skill set, passion for code quality, and commitment to staying current make me an asset to any tech endeavor. Let's connect and explore synergies!
+About<br>I am a Software Engineer with nearly 4 years of experience in creating scalable web and mobile
+applications. I have worked on complex integrations for healthcare, fintech, and e-commerce products. I
+have successfully developed many mobile applications using modern structures and technologies. I am
+committed to delivering high-quality, maintainable code within deadlines while improving performance
+and user experience.
 
 
 ## 🌐 Socials:
