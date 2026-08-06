@@ -52,8 +52,12 @@
   .bob   { animation:bob 2.1s ease-in-out infinite; }
   .draw  { stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }
   @media (prefers-reduced-motion:reduce) {
-    * { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+    .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {
+      animation:none !important; opacity:1 !important; transform:none !important;
+      stroke-dashoffset:0 !important;
+    }
   }
+
 </style>
 <rect width="100" height="42" fill="#0D1117"/><rect x="1" y="4" width="98" height="34" rx="9" fill="#161B22" stroke="#293138" stroke-width="1"/><text x="50.0" y="26.0" font-size="13.5" font-weight="650" fill="#9BA7B4" text-anchor="middle">Stats</text>
 </svg>

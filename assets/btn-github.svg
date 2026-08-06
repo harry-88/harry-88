@@ -52,8 +52,12 @@
   .bob   { animation:bob 2.1s ease-in-out infinite; }
   .draw  { stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }
   @media (prefers-reduced-motion:reduce) {
-    * { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+    .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {
+      animation:none !important; opacity:1 !important; transform:none !important;
+      stroke-dashoffset:0 !important;
+    }
   }
+
 </style>
 <rect width="142" height="46" fill="#0D1117"/><rect x="1" y="4" width="140" height="38" rx="19" fill="#161B22" stroke="#293138" stroke-width="1.4"/><text x="71.0" y="28.0" font-size="14" font-weight="700" fill="#E6EDF3" text-anchor="middle">Follow  ★</text>
 </svg>

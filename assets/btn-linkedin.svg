@@ -52,8 +52,12 @@
   .bob   { animation:bob 2.1s ease-in-out infinite; }
   .draw  { stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }
   @media (prefers-reduced-motion:reduce) {
-    * { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+    .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {
+      animation:none !important; opacity:1 !important; transform:none !important;
+      stroke-dashoffset:0 !important;
+    }
   }
+
 </style>
 <rect width="168" height="46" fill="#0D1117"/><rect x="1" y="4" width="166" height="38" rx="19" fill="url(#accent)"/><text x="84.0" y="28.0" font-size="14" font-weight="700" fill="#0D1117" text-anchor="middle">LinkedIn  ↗</text>
 </svg>

@@ -52,8 +52,12 @@
   .bob   { animation:bob 2.1s ease-in-out infinite; }
   .draw  { stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }
   @media (prefers-reduced-motion:reduce) {
-    * { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+    .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {
+      animation:none !important; opacity:1 !important; transform:none !important;
+      stroke-dashoffset:0 !important;
+    }
   }
+
 </style>
 <rect width="1200" height="132" fill="#0D1117"/><rect width="1200" height="132" fill="url(#grid)" opacity=".5"/><g filter="url(#blur)" opacity=".4"><circle class="blob" cx="300" cy="150" r="150" fill="#667EEA"/><circle class="blob2" cx="900" cy="150" r="150" fill="#F093FB"/></g><rect y="0" width="1200" height="2" fill="url(#accent)"/><text x="600" y="52" font-size="17" font-weight="700" fill="#E6EDF3" text-anchor="middle" class="rise">Thanks for scrolling all the way down 👋</text><text x="600" y="78" class="mono in" font-size="12.5" fill="#6E7A87" text-anchor="middle">built by Muhammad Haris · hand-rolled SVG, no page builder</text><text x="600" y="106" font-size="12" fill="#6E7A87" text-anchor="middle">⭐ Star a repo if it helped you</text>
 </svg>

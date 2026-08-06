@@ -52,8 +52,12 @@
   .bob   { animation:bob 2.1s ease-in-out infinite; }
   .draw  { stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }
   @media (prefers-reduced-motion:reduce) {
-    * { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+    .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {
+      animation:none !important; opacity:1 !important; transform:none !important;
+      stroke-dashoffset:0 !important;
+    }
   }
+
 </style>
 <rect width="1200" height="10" fill="#0D1117"/><rect x="0" y="4" width="1200" height="1.5" fill="#293138"/><g><rect x="0" y="3.5" width="260" height="3" rx="1.5" fill="url(#accent)" opacity=".9"><animate attributeName="x" values="-260;1200" dur="4.5s" repeatCount="indefinite"/></rect></g>
 </svg>

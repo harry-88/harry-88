@@ -36,6 +36,12 @@ A4 = "#FDA085"          # peach
 FONT = "'Segoe UI',Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif"
 MONO = "'SFMono-Regular',ui-monospace,Consolas,'Liberation Mono',Menlo,monospace"
 
+STATIC_CSS = "" if not STATIC else """
+  .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {
+    animation:none !important; opacity:1 !important; transform:none !important;
+    stroke-dashoffset:0 !important;
+  }"""
+
 
 def esc(s):
     return (s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;"))
@@ -55,8 +61,20 @@ def write(name, body):
     print(f"  ✓ {name}  ({os.path.getsize(path) / 1024:.1f} KB)")
 
 
-def svg(w, h, body, extra_defs="", extra_css=""):
-    """Wrap body in a root <svg> carrying the shared defs + animation library."""
+def svg(w, h, body, extra_defs="", rounded=0):
+    """Wrap body in a root <svg> carrying the shared defs + animation library.
+
+    `rounded` clips the panel to a rounded rectangle and strokes a border, so the
+    corners stay transparent and the panel reads as a card on light *and* dark
+    GitHub themes (stacked images always get a few px of line-height between
+    them, so panels can never truly butt together).
+    """
+    if rounded:
+        extra_defs = (f'<clipPath id="shell"><rect width="{w}" height="{h}" rx="{rounded}"/>'
+                      f'</clipPath>') + extra_defs
+        body = (f'<g clip-path="url(#shell)">{body}</g>'
+                f'<rect x=".75" y=".75" width="{w - 1.5}" height="{h - 1.5}" rx="{rounded}" '
+                f'fill="none" stroke="{LINE}" stroke-width="1.5"/>')
     return f"""<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 {w} {h}" width="{w}" height="{h}" fill="none" role="img">
 <defs>
   <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
@@ -111,8 +129,12 @@ def svg(w, h, body, extra_defs="", extra_css=""):
   .bob   {{ animation:bob 2.1s ease-in-out infinite; }}
   .draw  {{ stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }}
   @media (prefers-reduced-motion:reduce) {{
-    * {{ animation-duration:.01ms !important; animation-iteration-count:1 !important; }}
+    .rise,.slide,.in,.bar,.caret,.blob,.blob2,.halo,.ping,.bob,.draw {{
+      animation:none !important; opacity:1 !important; transform:none !important;
+      stroke-dashoffset:0 !important;
+    }}
   }}
+{STATIC_CSS}
 </style>
 {body}
 </svg>"""
