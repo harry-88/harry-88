@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 486" width="1200" height="486" fill="none" role="img">
+<defs>
+  <linearGradient id="accent" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#667EEA"/><stop offset=".45" stop-color="#764BA2"/>
+    <stop offset=".8" stop-color="#F093FB"/><stop offset="1" stop-color="#FDA085"/>
+  </linearGradient>
+  <linearGradient id="accentV" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0" stop-color="#667EEA"/><stop offset="1" stop-color="#F093FB"/>
+  </linearGradient>
+  <linearGradient id="fade" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0" stop-color="#667EEA"/><stop offset="1" stop-color="#667EEA" stop-opacity="0"/>
+  </linearGradient>
+  <pattern id="grid" width="34" height="34" patternUnits="userSpaceOnUse">
+    <path d="M34 0H0v34" stroke="#FFFFFF" stroke-opacity=".028" stroke-width="1"/>
+  </pattern>
+  <filter id="blur" x="-60%" y="-60%" width="220%" height="220%">
+    <feGaussianBlur stdDeviation="58"/>
+  </filter>
+  <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+    <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#000" flood-opacity=".42"/>
+  </filter>
+
+</defs>
+<style>
+  text { font-family:'Segoe UI',Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; }
+  .mono { font-family:'SFMono-Regular',ui-monospace,Consolas,'Liberation Mono',Menlo,monospace; }
+  @keyframes rise   { from { opacity:0; transform:translateY(16px); } to { opacity:1; transform:translateY(0); } }
+  @keyframes slideL { from { opacity:0; transform:translateX(-22px); } to { opacity:1; transform:translateX(0); } }
+  @keyframes fade   { from { opacity:0; } to { opacity:1; } }
+  @keyframes grow   { from { transform:scaleX(0); } to { transform:scaleX(1); } }
+  @keyframes blink  { 0%,45% { opacity:1; } 55%,100% { opacity:0; } }
+  @keyframes drift  { 0%,100% { transform:translate(0,0) scale(1); } 50% { transform:translate(46px,-30px) scale(1.16); } }
+  @keyframes drift2 { 0%,100% { transform:translate(0,0) scale(1.1); } 50% { transform:translate(-52px,26px) scale(.9); } }
+  @keyframes halo   { 0%,100% { opacity:.34; } 50% { opacity:.8; } }
+  @keyframes ping   { 0% { transform:scale(.7); opacity:.85; } 100% { transform:scale(2.6); opacity:0; } }
+  @keyframes bob    { 0%,100% { transform:translateY(0); } 50% { transform:translateY(7px); } }
+  @keyframes draw   { from { stroke-dashoffset:var(--len); } to { stroke-dashoffset:0; } }
+  @keyframes sweep  { 0% { transform:translateX(-100%); } 100% { transform:translateX(100%); } }
+  .rise  { animation:rise .85s cubic-bezier(.22,1,.36,1) both; }
+  .slide { animation:slideL .85s cubic-bezier(.22,1,.36,1) both; }
+  .in    { animation:fade 1s ease both; }
+  .bar   { transform-box:fill-box; transform-origin:left center;
+            animation:grow 1.15s cubic-bezier(.22,1,.36,1) both; }
+  .caret { animation:blink 1.1s steps(1) infinite; }
+  .blob  { transform-box:fill-box; transform-origin:center;
+            animation:drift 17s ease-in-out infinite; }
+  .blob2 { transform-box:fill-box; transform-origin:center;
+            animation:drift2 21s ease-in-out infinite; }
+  .halo  { animation:halo 4.5s ease-in-out infinite; }
+  .ping  { transform-box:fill-box; transform-origin:center;
+            animation:ping 2.6s ease-out infinite; }
+  .bob   { animation:bob 2.1s ease-in-out infinite; }
+  .draw  { stroke-dasharray:var(--len); animation:draw 1.9s ease-out .25s both; }
+  @media (prefers-reduced-motion:reduce) {
+    * { animation-duration:.01ms !important; animation-iteration-count:1 !important; }
+  }
+</style>
+<rect width="1200" height="486" fill="#0D1117"/><rect width="1200" height="486" fill="url(#grid)"/><g filter="url(#blur)" opacity=".2"><circle class="blob" cx="600" cy="240" r="230" fill="#764BA2"/></g><text x="70" y="52" font-size="16.5" font-weight="700" fill="#E6EDF3">4+ years · 4 teams · 20+ products</text><text x="1130" y="52" font-size="12" fill="#6E7A87" text-anchor="end">2021 → today</text><rect x="70" y="131" width="1060" height="2" rx="1" fill="#293138"/><rect x="70" y="130.5" width="1060" height="3" rx="1.5" fill="url(#accent)" class="bar" style="animation-delay:.2s"/><g class="rise" style="animation-delay:0.35s"><circle cx="178" cy="132" r="9" fill="#667EEA" opacity=".3" class="ping" style="animation-delay:1.15s"/><circle cx="178" cy="132" r="8.5" fill="#0D1117" stroke="#667EEA" stroke-width="3"/><circle cx="178" cy="132" r="3" fill="#667EEA"/><text x="178" y="106" font-size="11.5" font-weight="700" letter-spacing=".6" fill="#6E7A87" text-anchor="middle">Aug 2021 — Aug 2022</text><line x1="178" y1="144" x2="178" y2="174" stroke="#667EEA" stroke-width="1.5" stroke-dasharray="3 4" opacity=".7"/><g filter="url(#soft)"><rect x="54" y="174" width="248" height="194" rx="14" fill="#161B22" stroke="#293138" stroke-width="1"/><rect x="54" y="174" width="248" height="3" rx="1.5" fill="#667EEA"/></g><text x="78" y="214" font-size="16.5" font-weight="750" fill="#E6EDF3">YOURGUIDE</text><text x="78" y="234" font-size="12" font-weight="600" fill="#667EEA">Full Stack Developer</text><rect x="78" y="246" width="200" height="1" fill="#293138"/><text x="78" y="268" font-size="12" fill="#9BA7B4">Sole full stack dev — took the startup</text><text x="78" y="285" font-size="12" fill="#9BA7B4">platform from empty repo to launch.</text><text x="78" y="302" font-size="12" fill="#9BA7B4">React/Next + Express + Sequelize.</text></g><g class="rise" style="animation-delay:0.49s"><circle cx="466" cy="132" r="9" fill="#764BA2" opacity=".3" class="ping" style="animation-delay:1.29s"/><circle cx="466" cy="132" r="8.5" fill="#0D1117" stroke="#764BA2" stroke-width="3"/><circle cx="466" cy="132" r="3" fill="#764BA2"/><text x="466" y="106" font-size="11.5" font-weight="700" letter-spacing=".6" fill="#6E7A87" text-anchor="middle">Aug 2022 — Aug 2023</text><line x1="466" y1="144" x2="466" y2="174" stroke="#764BA2" stroke-width="1.5" stroke-dasharray="3 4" opacity=".7"/><g filter="url(#soft)"><rect x="342" y="174" width="248" height="194" rx="14" fill="#161B22" stroke="#293138" stroke-width="1"/><rect x="342" y="174" width="248" height="3" rx="1.5" fill="#764BA2"/></g><text x="366" y="214" font-size="16.5" font-weight="750" fill="#E6EDF3">NOWASYS Services</text><text x="366" y="234" font-size="12" font-weight="600" fill="#764BA2">Software Engineer</text><rect x="366" y="246" width="200" height="1" fill="#293138"/><text x="366" y="268" font-size="12" fill="#9BA7B4">~15 mobile apps with React + Ionic,</text><text x="366" y="285" font-size="12" fill="#9BA7B4">expanding the company's whole mobile</text><text x="366" y="302" font-size="12" fill="#9BA7B4">offering. Appwrite + Next.js.</text></g><g class="rise" style="animation-delay:0.63s"><circle cx="754" cy="132" r="9" fill="#F093FB" opacity=".3" class="ping" style="animation-delay:1.43s"/><circle cx="754" cy="132" r="8.5" fill="#0D1117" stroke="#F093FB" stroke-width="3"/><circle cx="754" cy="132" r="3" fill="#F093FB"/><text x="754" y="106" font-size="11.5" font-weight="700" letter-spacing=".6" fill="#6E7A87" text-anchor="middle">Aug 2023 — Aug 2025</text><line x1="754" y1="144" x2="754" y2="174" stroke="#F093FB" stroke-width="1.5" stroke-dasharray="3 4" opacity=".7"/><g filter="url(#soft)"><rect x="630" y="174" width="248" height="194" rx="14" fill="#161B22" stroke="#293138" stroke-width="1"/><rect x="630" y="174" width="248" height="3" rx="1.5" fill="#F093FB"/></g><text x="654" y="214" font-size="16.5" font-weight="750" fill="#E6EDF3">Binary Bursts</text><text x="654" y="234" font-size="12" font-weight="600" fill="#F093FB">Full Software Engineer</text><rect x="654" y="246" width="200" height="1" fill="#293138"/><text x="654" y="268" font-size="12" fill="#9BA7B4">4+ products across rentals, AI and</text><text x="654" y="285" font-size="12" fill="#9BA7B4">desktop. 10+ integrations, 3+ Electron</text><text x="654" y="302" font-size="12" fill="#9BA7B4">apps, AWS + Jenkins CI/CD.</text></g><g class="rise" style="animation-delay:0.77s"><circle cx="1042" cy="132" r="9" fill="#FDA085" opacity=".3" class="ping" style="animation-delay:1.57s"/><circle cx="1042" cy="132" r="8.5" fill="#0D1117" stroke="#FDA085" stroke-width="3"/><circle cx="1042" cy="132" r="3" fill="#FDA085"/><text x="1042" y="106" font-size="11.5" font-weight="700" letter-spacing=".6" fill="#6E7A87" text-anchor="middle">Aug 2025 — Present</text><line x1="1042" y1="144" x2="1042" y2="174" stroke="#FDA085" stroke-width="1.5" stroke-dasharray="3 4" opacity=".7"/><g filter="url(#soft)"><rect x="918" y="174" width="248" height="194" rx="14" fill="#161B22" stroke="#293138" stroke-width="1"/><rect x="918" y="174" width="248" height="3" rx="1.5" fill="#FDA085"/></g><text x="942" y="214" font-size="16.5" font-weight="750" fill="#E6EDF3">Septems Systems</text><text x="942" y="234" font-size="12" font-weight="600" fill="#FDA085">Full Software Engineer</text><rect x="942" y="246" width="200" height="1" fill="#293138"/><text x="942" y="268" font-size="12" fill="#9BA7B4">KEAN University LMS + veterinary</text><text x="942" y="285" font-size="12" fill="#9BA7B4">oncology platform. 3+ new products</text><text x="942" y="302" font-size="12" fill="#9BA7B4">in healthcare, AI and desktop.</text></g><g class="in" style="animation-delay:1s"><rect x="70" y="436" width="1060" height="1" fill="#293138"/><text x="70" y="466" font-size="13" fill="#6E7A87">🎓 <tspan font-weight="700" fill="#9BA7B4">BS Computer Science</tspan> — University of Management &amp; Technology (UMT)</text><text x="1130" y="466" font-size="12.5" font-weight="600" fill="#F093FB" text-anchor="end">open to new opportunities ●</text></g>
+</svg>
