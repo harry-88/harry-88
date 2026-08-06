@@ -385,7 +385,7 @@ def skills():
         ("Electron",                    74, "3+ desktop apps, offline-first, auto-update"),
     ]
     W = 1200
-    H = 116 + len(rows) * 62
+    H = 146 + len(rows) * 62   # trailing 30px keeps the last caption off the border
     b = [backdrop(W, H, blobs=False)]
     b.append(f'<g filter="url(#blur)" opacity=".22">'
              f'<circle class="blob" cx="140" cy="{H-60}" r="200" fill="{A1}"/></g>')
@@ -616,16 +616,6 @@ def footer():
 
 # ─────────────────────────── 9. bits and pieces ─────────────────────────────
 
-def divider():
-    # transparent background so the strip works on either GitHub theme
-    W, H = 1200, 10
-    b = [f'<rect x="0" y="4" width="{W}" height="1.5" fill="{LINE}" opacity=".8"/>']
-    b.append(f'<g><rect x="0" y="3.5" width="260" height="3" rx="1.5" fill="url(#accent)" '
-             f'opacity=".9"><animate attributeName="x" values="-260;1200" dur="4.5s" '
-             f'repeatCount="indefinite"/></rect></g>')
-    return svg(W, H, "".join(b))
-
-
 def button(name, label, w, primary=False):
     """Small pill rendered as its own file so it can be wrapped in a link.
 
@@ -666,7 +656,6 @@ if __name__ == "__main__":
     write("timeline.svg", timeline())
     write("contact.svg", contact())
     write("footer.svg", footer())
-    write("divider.svg", divider())
 
     # about / work / journey / contact carry their heading inside the panel;
     # these two sections have non-SVG content, so their heading stands alone.
