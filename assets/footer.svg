@@ -19,7 +19,7 @@
   <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
     <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#000" flood-opacity=".42"/>
   </filter>
-
+<clipPath id="shell"><rect width="1200" height="132" rx="20"/></clipPath>
 </defs>
 <style>
   text { font-family:'Segoe UI',Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; }
@@ -59,5 +59,5 @@
   }
 
 </style>
-<rect width="1200" height="132" fill="#0D1117"/><rect width="1200" height="132" fill="url(#grid)" opacity=".5"/><g filter="url(#blur)" opacity=".4"><circle class="blob" cx="300" cy="150" r="150" fill="#667EEA"/><circle class="blob2" cx="900" cy="150" r="150" fill="#F093FB"/></g><rect y="0" width="1200" height="2" fill="url(#accent)"/><text x="600" y="52" font-size="17" font-weight="700" fill="#E6EDF3" text-anchor="middle" class="rise">Thanks for scrolling all the way down 👋</text><text x="600" y="78" class="mono in" font-size="12.5" fill="#6E7A87" text-anchor="middle">built by Muhammad Haris · hand-rolled SVG, no page builder</text><text x="600" y="106" font-size="12" fill="#6E7A87" text-anchor="middle">⭐ Star a repo if it helped you</text>
+<g clip-path="url(#shell)"><rect width="1200" height="132" fill="#0D1117"/><rect width="1200" height="132" fill="url(#grid)" opacity=".5"/><g filter="url(#blur)" opacity=".4"><circle class="blob" cx="300" cy="150" r="150" fill="#667EEA"/><circle class="blob2" cx="900" cy="150" r="150" fill="#F093FB"/></g><rect y="0" width="1200" height="2" fill="url(#accent)"/><text x="600" y="52" font-size="17" font-weight="700" fill="#E6EDF3" text-anchor="middle" class="rise">Thanks for scrolling all the way down 👋</text><text x="600" y="78" class="mono in" font-size="12.5" fill="#6E7A87" text-anchor="middle">built by Muhammad Haris · hand-rolled SVG, no page builder</text><text x="600" y="106" font-size="12" fill="#6E7A87" text-anchor="middle">⭐ Star a repo if it helped you</text></g><rect x=".75" y=".75" width="1198.5" height="130.5" rx="20" fill="none" stroke="#293138" stroke-width="1.5"/>
 </svg>

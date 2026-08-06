@@ -19,7 +19,7 @@
   <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
     <feDropShadow dx="0" dy="5" stdDeviation="9" flood-color="#000" flood-opacity=".42"/>
   </filter>
-
+<clipPath id="shell"><rect width="1200" height="104" rx="20"/></clipPath>
 </defs>
 <style>
   text { font-family:'Segoe UI',Roboto,-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif; }
@@ -59,5 +59,5 @@
   }
 
 </style>
-<rect width="1200" height="104" fill="#0D1117"/><rect width="1200" height="104" fill="url(#grid)" opacity=".6"/><g class="slide"><rect x="70" y="26" width="3" height="52" rx="1.5" fill="url(#accentV)"/><text x="90" y="45" font-size="11.5" font-weight="700" letter-spacing="2.4" fill="#6E7A87">02 — WHAT I USE</text><text x="89" y="76" font-size="34" font-weight="800" letter-spacing="-.8" fill="#E6EDF3">Tech arsenal</text></g><rect x="357" y="63" width="772" height="1" fill="url(#fade)" class="bar" style="animation-delay:.5s"/><circle cx="1116" cy="52" r="4" fill="#764BA2" class="halo"/><circle cx="1116" cy="52" r="4" fill="#764BA2" class="ping"/>
+<g clip-path="url(#shell)"><rect width="1200" height="104" fill="#0D1117"/><rect width="1200" height="104" fill="url(#grid)"/><g class="slide"><rect x="70" y="30" width="3" height="52" rx="1.5" fill="url(#accentV)"/><text x="90" y="49" font-size="11.5" font-weight="700" letter-spacing="2.4" fill="#6E7A87">02 — WHAT I USE</text><text x="89" y="80" font-size="34" font-weight="800" letter-spacing="-.8" fill="#E6EDF3">Tech arsenal</text></g><rect x="357" y="67" width="772" height="1" fill="url(#fade)" class="bar" style="animation-delay:.5s"/><circle cx="1116" cy="56" r="4" fill="#764BA2" class="halo"/><circle cx="1116" cy="56" r="4" fill="#764BA2" class="ping"/></g><rect x=".75" y=".75" width="1198.5" height="102.5" rx="20" fill="none" stroke="#293138" stroke-width="1.5"/>
 </svg>

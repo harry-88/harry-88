@@ -230,8 +230,8 @@ def hero():
     b.append('<g class="in" style="animation-delay:.7s" opacity=".9">')
     cx, cy = 1002, 214
     for i, r in enumerate((70, 108, 146)):
-        b.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" stroke="{LINE}" stroke-width="1" '
-                 f'stroke-dasharray="3 7" opacity="{0.9 - i*0.22}"/>')
+        b.append(f'<circle cx="{cx}" cy="{cy}" r="{r}" stroke="#48505A" stroke-width="1.2" '
+                 f'stroke-dasharray="4 8" opacity="{0.95 - i*0.18:.2f}"/>')
     b.append(f'<circle cx="{cx}" cy="{cy}" r="44" fill="url(#accentV)" opacity=".16"/>')
     b.append(f'<circle cx="{cx}" cy="{cy}" r="44" stroke="{A1}" stroke-width="1.4" opacity=".55"/>')
     b.append(f'<text x="{cx}" y="{cy + 9}" class="mono" font-size="25" font-weight="700" '
@@ -243,37 +243,53 @@ def hero():
                  f'path="M {r} 0 A {r} {r} 0 1 1 {-r} 0 A {r} {r} 0 1 1 {r} 0"/>'
                  f'</circle></g>')
     b.append('</g>')
-    return svg(W, H, "".join(b))
+    return svg(W, H, "".join(b), rounded=20)
 
 
 # ────────────────────────── 2. section headings ─────────────────────────────
 
-def section(name, kicker, title, color):
-    W, H = 1200, 104
-    b = [f'<rect width="{W}" height="{H}" fill="{BG}"/>',
-         f'<rect width="{W}" height="{H}" fill="url(#grid)" opacity=".6"/>']
-    b.append('<g class="slide">')
-    b.append(f'<rect x="70" y="26" width="3" height="52" rx="1.5" fill="url(#accentV)"/>')
-    b.append(f'<text x="90" y="45" font-size="11.5" font-weight="700" letter-spacing="2.4" '
+HEADER_H = 104   # vertical space a baked-in section heading occupies
+
+
+def header_frag(kicker, title, color):
+    """The section heading, drawn in the top HEADER_H px of a 1200-wide panel."""
+    b = ['<g class="slide">']
+    b.append(f'<rect x="70" y="30" width="3" height="52" rx="1.5" fill="url(#accentV)"/>')
+    b.append(f'<text x="90" y="49" font-size="11.5" font-weight="700" letter-spacing="2.4" '
              f'fill="{INK_FAINT}">{esc(kicker)}</text>')
-    b.append(f'<text x="89" y="76" font-size="34" font-weight="800" letter-spacing="-.8" '
+    b.append(f'<text x="89" y="80" font-size="34" font-weight="800" letter-spacing="-.8" '
              f'fill="{INK}">{esc(title)}</text>')
     b.append('</g>')
     w = int(len(title) * 19) + 40
-    b.append(f'<rect x="{89 + w}" y="63" width="{max(60, 1040 - w)}" height="1" fill="url(#fade)" '
+    b.append(f'<rect x="{89 + w}" y="67" width="{max(60, 1040 - w)}" height="1" fill="url(#fade)" '
              f'class="bar" style="animation-delay:.5s"/>')
-    b.append(f'<circle cx="1116" cy="52" r="4" fill="{color}" class="halo"/>')
-    b.append(f'<circle cx="1116" cy="52" r="4" fill="{color}" class="ping"/>')
-    write(f"sec-{name}.svg", svg(W, H, "".join(b)))
+    b.append(f'<circle cx="1116" cy="56" r="4" fill="{color}" class="halo"/>')
+    b.append(f'<circle cx="1116" cy="56" r="4" fill="{color}" class="ping"/>')
+    return "".join(b)
+
+
+def with_header(w, h, body, kicker, title, color, blobs=True):
+    """Stack a section heading on top of an existing panel body."""
+    H = h + HEADER_H
+    out = [backdrop(w, H, blobs=blobs),
+           header_frag(kicker, title, color),
+           f'<g transform="translate(0,{HEADER_H})">{body}</g>']
+    return svg(w, H, "".join(out), rounded=20)
+
+
+def section(name, kicker, title, color):
+    """Standalone heading, for the sections whose content isn't one of my SVGs."""
+    W = 1200
+    b = [backdrop(W, HEADER_H, blobs=False), header_frag(kicker, title, color)]
+    write(f"sec-{name}.svg", svg(W, HEADER_H, "".join(b), rounded=20))
 
 
 # ─────────────────────────────── 3. about ───────────────────────────────────
 
 def about():
     W, H = 1200, 546
-    b = [backdrop(W, H, blobs=False)]
-    b.append(f'<g filter="url(#blur)" opacity=".32">'
-             f'<circle class="blob2" cx="1080" cy="120" r="190" fill="{A2}"/></g>')
+    b = [f'<g filter="url(#blur)" opacity=".26">'
+         f'<circle class="blob2" cx="1080" cy="120" r="190" fill="{A2}"/></g>']
 
     # ── left: code window ──
     b.append('<g class="rise" style="animation-delay:.1s" filter="url(#soft)">')
@@ -353,7 +369,7 @@ def about():
     b.append(f'<text x="70" y="528" font-size="13.5" font-style="italic" fill="{INK_DIM}">'
              f'“High-quality, maintainable code — delivered on deadline.”</text>')
     b.append('</g>')
-    return svg(W, H, "".join(b))
+    return with_header(W, H, "".join(b), "01 — WHO I AM", "About me", A1, blobs=False)
 
 
 # ──────────────────────────────── 4. skills ─────────────────────────────────
@@ -399,7 +415,7 @@ def skills():
                  f'fill="{INK_DIM}" text-anchor="end">{pct}%</text>')
         b.append('</g>')
         y += 62
-    return svg(W, H, "".join(b))
+    return svg(W, H, "".join(b), rounded=20)
 
 
 # ─────────────────────────────── 5. projects ────────────────────────────────
@@ -437,16 +453,16 @@ def projects():
           "caching and performance tuning."],
          ["Next.js", "Express", "Sequelize"]),
     ]
+    # two columns inside the 70…1130 content area
     W, CW, CH, GAP = 1200, 516, 232, 28
     rows = (len(items) + 1) // 2
     H = 56 + rows * (CH + GAP)
-    b = [backdrop(W, H, blobs=False)]
-    b.append(f'<g filter="url(#blur)" opacity=".26">'
-             f'<circle class="blob" cx="1060" cy="90" r="210" fill="{A3}"/>'
-             f'<circle class="blob2" cx="120" cy="{H-90}" r="200" fill="{A1}"/></g>')
+    b = [f'<g filter="url(#blur)" opacity=".22">'
+         f'<circle class="blob" cx="1060" cy="90" r="210" fill="{A3}"/>'
+         f'<circle class="blob2" cx="120" cy="{H-90}" r="200" fill="{A1}"/></g>']
 
     for i, (icon, title, org, col, lines, tags) in enumerate(items):
-        cx = 70 + (i % 2) * (CW + GAP + 42)
+        cx = 70 + (i % 2) * (CW + GAP)
         cy = 28 + (i // 2) * (CH + GAP)
         b.append(f'<g class="rise" style="animation-delay:{0.1 + i*0.09:.2f}s" filter="url(#soft)">')
         b.append(panel(cx, cy, CW, CH, r=16))
@@ -472,7 +488,7 @@ def projects():
         b.append(f'<text x="{cx+CW-26}" y="{cy+CH-22}" font-size="12" font-weight="700" '
                  f'fill="{col}" text-anchor="end">production ●</text>')
         b.append('</g>')
-    return svg(W, H, "".join(b))
+    return with_header(W, H, "".join(b), "03 — WHAT I'VE MADE", "Selected work", A3, blobs=False)
 
 
 # ─────────────────────────────── 6. timeline ────────────────────────────────
@@ -497,16 +513,19 @@ def timeline():
           "in healthcare, AI and desktop."]),
     ]
     W, H = 1200, 486
-    b = [backdrop(W, H, blobs=False)]
-    b.append(f'<g filter="url(#blur)" opacity=".2">'
-             f'<circle class="blob" cx="600" cy="240" r="230" fill="{A2}"/></g>')
+    b = [f'<g filter="url(#blur)" opacity=".18">'
+         f'<circle class="blob" cx="600" cy="240" r="230" fill="{A2}"/></g>']
 
     b.append(f'<text x="70" y="52" font-size="16.5" font-weight="700" fill="{INK}">'
              f'4+ years · 4 teams · 20+ products</text>')
     b.append(f'<text x="1130" y="52" font-size="12" fill="{INK_FAINT}" text-anchor="end">'
              f'2021 → today</text>')
 
-    rail_y, x0, step = 132, 178, 288
+    # 4 cards of CARD_W centred in the 70…1130 content area
+    CARD_W = 248
+    rail_y = 132
+    x0 = 70 + CARD_W // 2
+    step = (1060 - CARD_W) // (len(stops) - 1)
     b.append(f'<rect x="70" y="{rail_y-1}" width="1060" height="2" rx="1" fill="{LINE}"/>')
     b.append(f'<rect x="70" y="{rail_y-1.5}" width="1060" height="3" rx="1.5" fill="url(#accent)" '
              f'class="bar" style="animation-delay:.2s"/>')
@@ -527,8 +546,9 @@ def timeline():
                  f'stroke-width="1.5" stroke-dasharray="3 4" opacity=".7"/>')
         # card
         b.append(f'<g filter="url(#soft)">')
-        b.append(panel(cx - 124, rail_y + 42, 248, 194, r=14))
-        b.append(f'<rect x="{cx-124}" y="{rail_y+42}" width="248" height="3" rx="1.5" fill="{col}"/>')
+        b.append(panel(cx - CARD_W // 2, rail_y + 42, CARD_W, 194, r=14))
+        b.append(f'<rect x="{cx - CARD_W // 2}" y="{rail_y+42}" width="{CARD_W}" height="3" '
+                 f'rx="1.5" fill="{col}"/>')
         b.append('</g>')
         b.append(f'<text x="{cx-100}" y="{rail_y+82}" font-size="16.5" font-weight="750" '
                  f'fill="{INK}">{esc(org)}</text>')
@@ -548,14 +568,14 @@ def timeline():
     b.append(f'<text x="1130" y="466" font-size="12.5" font-weight="600" fill="{A3}" '
              f'text-anchor="end">open to new opportunities ●</text>')
     b.append('</g>')
-    return svg(W, H, "".join(b))
+    return with_header(W, H, "".join(b), "04 — WHERE I'VE BEEN", "Career journey", A4, blobs=False)
 
 
 # ──────────────────────────── 7. contact panel ──────────────────────────────
 
 def contact():
     W, H = 1200, 244
-    b = [backdrop(W, H)]
+    b = []
     b.append(f'<text x="600" y="76" font-size="30" font-weight="800" letter-spacing="-.6" '
              f'fill="{INK}" text-anchor="middle" class="rise">Let&#39;s build something '
              f'<tspan fill="url(#accent)">great</tspan>.</text>')
@@ -571,7 +591,7 @@ def contact():
     b.append('</g>')
     b.append(f'<path d="M592 226l8 9 8-9" stroke="{INK_FAINT}" stroke-width="2" '
              f'stroke-linecap="round" fill="none" class="bob"/>')
-    return svg(W, H, "".join(b))
+    return with_header(W, H, "".join(b), "06 — SAY HELLO", "Get in touch", A3)
 
 
 # ──────────────────────────────── 8. footer ─────────────────────────────────
@@ -591,15 +611,15 @@ def footer():
              f'built by Muhammad Haris · hand-rolled SVG, no page builder</text>')
     b.append(f'<text x="600" y="106" font-size="12" fill="{INK_FAINT}" text-anchor="middle">'
              f'⭐ Star a repo if it helped you</text>')
-    return svg(W, H, "".join(b))
+    return svg(W, H, "".join(b), rounded=20)
 
 
 # ─────────────────────────── 9. bits and pieces ─────────────────────────────
 
 def divider():
+    # transparent background so the strip works on either GitHub theme
     W, H = 1200, 10
-    b = [f'<rect width="{W}" height="{H}" fill="{BG}"/>',
-         f'<rect x="0" y="4" width="{W}" height="1.5" fill="{LINE}"/>']
+    b = [f'<rect x="0" y="4" width="{W}" height="1.5" fill="{LINE}" opacity=".8"/>']
     b.append(f'<g><rect x="0" y="3.5" width="260" height="3" rx="1.5" fill="url(#accent)" '
              f'opacity=".9"><animate attributeName="x" values="-260;1200" dur="4.5s" '
              f'repeatCount="indefinite"/></rect></g>')
@@ -607,9 +627,13 @@ def divider():
 
 
 def button(name, label, w, primary=False):
-    """Small pill rendered as its own file so it can be wrapped in a link."""
+    """Small pill rendered as its own file so it can be wrapped in a link.
+
+    Background stays transparent — these sit directly on the GitHub page, not on
+    one of my dark panels.
+    """
     H = 46
-    b = [f'<rect width="{w}" height="{H}" fill="{BG}"/>']
+    b = []
     if primary:
         b.append(f'<rect x="1" y="4" width="{w-2}" height="{H-8}" rx="19" fill="url(#accent)"/>')
         fill = "#0D1117"
@@ -624,8 +648,7 @@ def button(name, label, w, primary=False):
 
 def navitem(name, label, w):
     H = 42
-    b = [f'<rect width="{w}" height="{H}" fill="{BG}"/>',
-         f'<rect x="1" y="4" width="{w-2}" height="{H-8}" rx="9" fill="{CARD}" '
+    b = [f'<rect x="1" y="4" width="{w-2}" height="{H-8}" rx="9" fill="{CARD}" '
          f'stroke="{LINE}" stroke-width="1"/>',
          f'<text x="{w/2}" y="{H/2 + 5}" font-size="13.5" font-weight="650" fill="{INK_DIM}" '
          f'text-anchor="middle">{esc(label)}</text>']
@@ -645,12 +668,10 @@ if __name__ == "__main__":
     write("footer.svg", footer())
     write("divider.svg", divider())
 
-    section("about",   "01 — WHO I AM",        "About me",          A1)
-    section("stack",   "02 — WHAT I USE",      "Tech arsenal",      A2)
-    section("work",    "03 — WHAT I'VE MADE",  "Selected work",     A3)
-    section("journey", "04 — WHERE I'VE BEEN", "Career journey",    A4)
-    section("stats",   "05 — THE NUMBERS",     "GitHub activity",   A1)
-    section("contact", "06 — SAY HELLO",       "Get in touch",      A3)
+    # about / work / journey / contact carry their heading inside the panel;
+    # these two sections have non-SVG content, so their heading stands alone.
+    section("stack", "02 — WHAT I USE",  "Tech arsenal",    A2)
+    section("stats", "05 — THE NUMBERS", "GitHub activity", A1)
 
     for slug, label, w in (("about", "About", 104), ("stack", "Stack", 100),
                            ("work", "Work", 94), ("journey", "Journey", 116),
